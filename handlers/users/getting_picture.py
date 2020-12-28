@@ -8,14 +8,14 @@ import os
 @rate_limit(limit=5)  # anti-spam
 @dp.message_handler(content_types=ContentType.PHOTO)
 async def getting_photo(message: Message):
-    """Downloading to directory picture from message."""
+    """Downloading to user directory picture from message."""
     username = message.from_user.username
-    try:
+    try: # If dir is not exist
         os.mkdir(f'docs/{username}')
-    except:
+    except: # If dir exist
         print('File exist')
 
-    await message.photo[-1].download(f'docs/{username}/picture.png')
+    await message.photo[-1].download(f'docs/{username}/picture.png')  # Downloading image to directory of user
     await message.answer('Select type of output:', reply_markup=output_type_keyboard)
 
 

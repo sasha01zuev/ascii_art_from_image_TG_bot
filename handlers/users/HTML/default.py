@@ -26,7 +26,7 @@ async def default_html(call: CallbackQuery):
 
     await call.message.edit_text('Done! Sending ...')
 
-    if size_mb < 10:  # restriction of telegram. Image can't be more than 10mb
+    if size_mb < 10:  # restriction of Telegram. Image can't be more than 10mb
         await call.message.answer_photo(InputFile(path_or_bytesio=f'docs/{username}/html.png'))
         await call.message.answer_document(InputFile(f'docs/{username}/html.png'))
         await call.message.answer_document(InputFile(f'docs/{username}/ascii.html'))
@@ -36,4 +36,4 @@ async def default_html(call: CallbackQuery):
         await call.message.answer_document(InputFile(f'docs/{username}/ascii.html'))
 
     await call.message.delete()
-    shutil.rmtree(f'docs/{username}/')
+    shutil.rmtree(f'docs/{username}/')  # Removing dir with user files

@@ -1,4 +1,4 @@
-from aiogram.types import ContentType, Message, ParseMode, InputFile, CallbackQuery
+from aiogram.types import CallbackQuery
 from loader import dp
 from keyboards.inline.callback_data import output_callback
 from keyboards.inline import html_customizations_keyboard

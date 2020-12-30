@@ -5,12 +5,12 @@ import ascii_magic
 import imgkit
 from aiogram.types import InputFile, CallbackQuery
 
-from keyboards.inline.callback_data import html_customization_callback
+from keyboards.inline.callback_data import presets_callback
 from loader import dp
 from PIL import Image
 
 
-@dp.callback_query_handler(html_customization_callback.filter(type='default'))
+@dp.callback_query_handler(presets_callback.filter(size='100_columns'))
 async def default_html(call: CallbackQuery):
     """Converting image to html, and taking screenshot of html page"""
     await call.answer(cache_time=3)
@@ -18,7 +18,7 @@ async def default_html(call: CallbackQuery):
 
     await call.message.edit_text('Wait some seconds...')
     output = ascii_magic.from_image_file(f'docs/{username}/picture.png',
-                                         columns=135, mode=ascii_magic.Modes.HTML)  # Customization for default html doc
+                                         columns=100, mode=ascii_magic.Modes.HTML)  # Customization for default html doc
     ascii_magic.to_html_file(f'docs/{username}/ascii.html', output)  # Reversing from image to html
 
     imgkit.from_file(f'docs/{username}/ascii.html', f'docs/{username}/html.png')  # Screenshot from html page
@@ -30,7 +30,7 @@ async def default_html(call: CallbackQuery):
     # Cropping coordinates
     left = 8
     top = 16
-    right = width - width/3 - 13
+    right = width - width / 3 - 13 - ((width - width / 3 - 13) / 4) - 1
     bottom = height - top
 
     # Cropped image of above dimension

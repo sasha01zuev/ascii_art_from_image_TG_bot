@@ -24,18 +24,18 @@ async def set_columns(message: Message, state: FSMContext):
     await state.update_data(size=message.text)
     data = await state.get_data()
     columns = data.get("size")
-    try:
-        if int(columns) < 0 or int(columns) > 1000:
+    try:  # If user entered digit
+        if int(columns) < 0 or int(columns) > 1000:  # If user entered incorrect number
             await message.answer("Chosen default size (135)")
             columns = '135'
             await state.update_data(size=columns)
             await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
             await Customization.SetRatio.set()
-        else:
+        else:  # If user entered correct number
             await state.update_data(size=columns)
             await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
             await Customization.SetRatio.set()
-    except ValueError:
+    except ValueError:  # If user entered characters instead digits
         await message.answer("Chosen default size (135)")
         await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
         columns = '135'
@@ -44,14 +44,14 @@ async def set_columns(message: Message, state: FSMContext):
 
 
 @dp.message_handler(state=Customization.SetRatio)
-async def set_ratio(message: Message, state: FSMContext):
+async def set_ratio(message: Message, state: FSMContext, call: CallbackQuery):
     await state.update_data(ratio=message.text)
     username = message.from_user.username
     data = await state.get_data()
     columns = data.get("size")
     ratio = data.get("ratio")
     try:
-        if float(ratio) < 0 or float(ratio) > 10:
+        if float(ratio) < 0 or float(ratio) > 10:  # If user entered incorrect number
             await message.answer("Chosen default ratio")
             await message.answer('Wait some seconds...')
             output = ascii_magic.from_image_file(f'docs/{username}/picture.png',
@@ -94,7 +94,7 @@ async def set_ratio(message: Message, state: FSMContext):
             await message.delete()
             shutil.rmtree(f'docs/{username}/')  # Removing dir with user files
 
-        else:
+        else:  # If user entered correct number
             await message.answer("Chosen default ratio")
             await message.answer('Wait some seconds...')
             output = ascii_magic.from_image_file(f'docs/{username}/picture.png',
@@ -137,8 +137,7 @@ async def set_ratio(message: Message, state: FSMContext):
             await message.delete()
             shutil.rmtree(f'docs/{username}/')  # Removing dir with user files
 
-    except ValueError:
-        await message.answer("Chosen default ratio")
+    except ValueError:  # If user entered characters instead digits
         await message.answer("Chosen default ratio")
         await message.answer('Wait some seconds...')
         output = ascii_magic.from_image_file(f'docs/{username}/picture.png',

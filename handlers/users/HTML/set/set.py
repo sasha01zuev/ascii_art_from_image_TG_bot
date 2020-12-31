@@ -44,7 +44,7 @@ async def set_columns(message: Message, state: FSMContext):
 
 
 @dp.message_handler(state=Customization.SetRatio)
-async def set_ratio(message: Message, state: FSMContext, call: CallbackQuery):
+async def set_ratio(message: Message, state: FSMContext):
     await state.update_data(ratio=message.text)
     username = message.from_user.username
     data = await state.get_data()

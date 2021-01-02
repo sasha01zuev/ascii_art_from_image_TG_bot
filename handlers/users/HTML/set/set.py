@@ -7,7 +7,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, Message, InputFile
 from loader import dp
 from keyboards.inline.callback_data import html_customization_callback
-from states import Customization
+from states import CustomizationHTML
 from PIL import Image
 
 
@@ -15,11 +15,11 @@ from PIL import Image
 async def set_html(call: CallbackQuery):
     await call.answer(cache_time=3)
     await call.message.delete()
-    await call.message.answer('Write the number of columns (0-1000).')
-    await Customization.SetSize.set()
+    await call.message.answer('Write the number of columns (0-1000)')
+    await CustomizationHTML.SetSize.set()
 
 
-@dp.message_handler(state=Customization.SetSize)
+@dp.message_handler(state=CustomizationHTML.SetSize)
 async def set_columns(message: Message, state: FSMContext):
     await state.update_data(size=message.text)
     data = await state.get_data()
@@ -30,20 +30,20 @@ async def set_columns(message: Message, state: FSMContext):
             columns = '135'
             await state.update_data(size=columns)
             await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
-            await Customization.SetRatio.set()
+            await CustomizationHTML.SetRatio.set()
         else:  # If user entered correct number
             await state.update_data(size=columns)
             await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
-            await Customization.SetRatio.set()
+            await CustomizationHTML.SetRatio.set()
     except ValueError:  # If user entered characters instead digits
         await message.answer("Chosen default size (135)")
         await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
         columns = '135'
         await state.update_data(size=columns)
-        await Customization.SetRatio.set()
+        await CustomizationHTML.SetRatio.set()
 
 
-@dp.message_handler(state=Customization.SetRatio)
+@dp.message_handler(state=CustomizationHTML.SetRatio)
 async def set_ratio(message: Message, state: FSMContext):
     await state.update_data(ratio=message.text)
     username = message.from_user.username

@@ -6,6 +6,10 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 #     SetStartCommand = State()
 
 
-class Customization(StatesGroup):
+class CustomizationHTML(StatesGroup):
     SetSize = State()
     SetRatio = State()
+
+
+class CustomizationASCII(StatesGroup):
+    SetSize = State()

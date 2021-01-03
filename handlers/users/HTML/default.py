@@ -19,9 +19,9 @@ async def default_html(call: CallbackQuery):
     await call.message.edit_text('Wait some seconds...')
     output = ascii_magic.from_image_file(f'docs/{username}/picture.png',
                                          columns=135, mode=ascii_magic.Modes.HTML)  # Customization for default html doc
-    ascii_magic.to_html_file(f'docs/{username}/ascii.html', output)  # Reversing from image to html
+    ascii_magic.to_html_file(f'docs/{username}/index.html', output)  # Reversing from image to html
 
-    imgkit.from_file(f'docs/{username}/ascii.html', f'docs/{username}/html.png')  # Screenshot from html page
+    imgkit.from_file(f'docs/{username}/index.html', f'docs/{username}/html.png')  # Screenshot from html page
     ###########################################################################################
     #                                      Cropping Image                                     #
     image = Image.open(f'docs/{username}/html.png')
@@ -47,11 +47,11 @@ async def default_html(call: CallbackQuery):
     if size_mb < 10:  # restriction of Telegram. Image can't be more than 10mb
         await call.message.answer_photo(InputFile(path_or_bytesio=f'docs/{username}/html.png'))
         await call.message.answer_document(InputFile(f'docs/{username}/html.png'))
-        await call.message.answer_document(InputFile(f'docs/{username}/ascii.html'))
+        await call.message.answer_document(InputFile(f'docs/{username}/index.html'))
     else:
         await call.message.answer('So big size of photo. Sending only photo-document...')
         await call.message.answer_document(InputFile(f'docs/{username}/html.png'))
-        await call.message.answer_document(InputFile(f'docs/{username}/ascii.html'))
+        await call.message.answer_document(InputFile(f'docs/{username}/index.html'))
 
     await call.message.delete()
     shutil.rmtree(f'docs/{username}/')  # Removing dir with user files

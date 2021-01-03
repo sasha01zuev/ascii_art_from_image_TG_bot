@@ -13,4 +13,5 @@ async def start(message: Message):
                          "    ✅ If you chosen HTML, there are 3 kinds of customization. You can try every\n"
                          "    ✅ As a result, you will receive a picture, a picture file and a document file with art\n"
                          "    ✅ If output image more than 10 MB then only the files will be sent\n"
-                         "    ✅ If you configure the output of the image yourself, the image will not be cropped!")
+                         "    ✅ If you configure the output of the image yourself, the image will not be cropped!\n"
+                         "    ✅ If you want to write directly to the admin - start your message '/toadmin (message)'")

@@ -3,11 +3,11 @@ import shutil
 
 import ascii_magic
 import imgkit
+from PIL import Image
 from aiogram.types import InputFile, CallbackQuery
 
 from keyboards.inline.callback_data import html_customization_callback
 from loader import dp
-from PIL import Image
 
 
 @dp.callback_query_handler(html_customization_callback.filter(type='default'))
@@ -30,7 +30,7 @@ async def default_html(call: CallbackQuery):
     # Cropping coordinates
     left = 8
     top = 16
-    right = width - width/3 - 13
+    right = width - width / 3 - 13
     bottom = height - top
 
     # Cropped image of above dimension

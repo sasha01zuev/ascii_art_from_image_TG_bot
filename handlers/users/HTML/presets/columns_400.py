@@ -3,11 +3,11 @@ import shutil
 
 import ascii_magic
 import imgkit
+from PIL import Image
 from aiogram.types import InputFile, CallbackQuery
 
 from keyboards.inline.callback_data import presets_callback
 from loader import dp
-from PIL import Image
 
 
 @dp.callback_query_handler(presets_callback.filter(size='400_columns'))

@@ -1,5 +1,4 @@
 from aiogram import types
-from aiogram.types import ContentType, Message
 
 from loader import dp
 
@@ -8,5 +7,3 @@ from loader import dp
 async def echo(message: types.Message):
     """Answer for simple message"""
     await message.answer("I work with pictures only🤫")
-
-

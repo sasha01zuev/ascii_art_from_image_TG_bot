@@ -3,14 +3,16 @@ import shutil
 
 import ascii_magic
 import imgkit
+from PIL import Image
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery, Message, InputFile
-from loader import dp
+
 from keyboards.inline.callback_data import html_customization_callback
+from loader import dp
 from states import CustomizationHTML
-from PIL import Image
 
 
+# If Set type was chosen
 @dp.callback_query_handler(html_customization_callback.filter(type='set'))
 async def set_html(call: CallbackQuery):
     await call.answer(cache_time=3)

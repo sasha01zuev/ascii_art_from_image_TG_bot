@@ -3,11 +3,11 @@ import shutil
 
 import ascii_magic
 import imgkit
+from PIL import Image
 from aiogram.types import InputFile, CallbackQuery
 
 from keyboards.inline.callback_data import presets_callback
 from loader import dp
-from PIL import Image
 
 
 @dp.callback_query_handler(presets_callback.filter(size='1280_columns'))
@@ -18,7 +18,8 @@ async def default_html(call: CallbackQuery):
 
     await call.message.edit_text('Wait some seconds...')
     output = ascii_magic.from_image_file(f'docs/{username}/picture.png',
-                                         columns=1280, mode=ascii_magic.Modes.HTML)  # Customization for default html doc
+                                         columns=1280,
+                                         mode=ascii_magic.Modes.HTML)  # Customization for default html doc
     ascii_magic.to_html_file(f'docs/{username}/ascii.html', output)  # Reversing from image to html
 
     imgkit.from_file(f'docs/{username}/ascii.html', f'docs/{username}/html.png')  # Screenshot from html page

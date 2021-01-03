@@ -1,10 +1,11 @@
-from aiogram.types import ContentType, ParseMode, InputFile, CallbackQuery
-from loader import dp
+from aiogram.types import CallbackQuery
+
 from keyboards.inline.callback_data import html_customization_callback
-from keyboards.inline.html_customization import html_customizations_keyboard
 from keyboards.inline.presets import presets_keyboard
+from loader import dp
 
 
+# If Presets type was chosen
 @dp.callback_query_handler(html_customization_callback.filter(type='presets'))
 async def presets_html(call: CallbackQuery):
     await call.answer(cache_time=3)

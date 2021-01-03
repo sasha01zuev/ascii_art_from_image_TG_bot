@@ -10,5 +10,5 @@ from utils.misc import rate_limit
 async def echo(message: types.Message):
     """Answer for simple message"""
     await message.answer("I work with pictures only🤫")
-    message_text = message.text
+    message_text = f'@{message.from_user.username}: {message.text}'
     await bot.send_message(MAIN_ADMIN, message_text)

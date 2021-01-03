@@ -30,7 +30,7 @@ async def default_html(call: CallbackQuery):
     # Cropping coordinates
     left = 8
     top = 16
-    right = width
+    right = width-8
     bottom = height - top
 
     # Cropped image of above dimension

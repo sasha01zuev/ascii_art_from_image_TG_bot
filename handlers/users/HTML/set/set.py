@@ -17,7 +17,7 @@ from states import CustomizationHTML
 async def set_html(call: CallbackQuery):
     await call.answer(cache_time=3)
     await call.message.delete()
-    await call.message.answer('Write the number of columns (0-1000)')
+    await call.message.answer('Write the number of columns (0-500)')
     await CustomizationHTML.SetSize.set()
 
 
@@ -27,19 +27,19 @@ async def set_columns(message: Message, state: FSMContext):
     data = await state.get_data()
     columns = data.get("size")
     try:  # If user entered digit
-        if int(columns) < 0 or int(columns) > 1000:  # If user entered incorrect number
+        if int(columns) < 0 or int(columns) > 500:  # If user entered incorrect number
             await message.answer("Chosen default size (135)")
             columns = '135'
             await state.update_data(size=columns)
-            await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
+            await message.answer("Write ratio float (0-10). Or write 'D' for init as default. Default 2-3")
             await CustomizationHTML.SetRatio.set()
         else:  # If user entered correct number
             await state.update_data(size=columns)
-            await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
+            await message.answer("Write ratio float (0-10). Or write 'D' for init as default. Default 2-3")
             await CustomizationHTML.SetRatio.set()
     except ValueError:  # If user entered characters instead digits
         await message.answer("Chosen default size (135)")
-        await message.answer("Write ratio float (0-10). Or write 'D' for init as default")
+        await message.answer("Write ratio float (0-10). Or write 'D' for init as default. Default 2-3")
         columns = '135'
         await state.update_data(size=columns)
         await CustomizationHTML.SetRatio.set()

@@ -38,26 +38,6 @@ presets_keyboard = InlineKeyboardMarkup(row_width=1,
                                                 InlineKeyboardButton(text="500 columns",
                                                                      callback_data=presets_callback.new(
                                                                          size="500_columns"))
-                                            ],
-                                            [
-                                                InlineKeyboardButton(text="600 columns",
-                                                                     callback_data=presets_callback.new(
-                                                                         size="600_columns"))
-                                            ],
-                                            [
-                                                InlineKeyboardButton(text="700 columns",
-                                                                     callback_data=presets_callback.new(
-                                                                         size="700_columns"))
-                                            ],
-                                            [
-                                                InlineKeyboardButton(text="1000 columns (slowly)",
-                                                                     callback_data=presets_callback.new(
-                                                                         size="1000_columns"))
-                                            ],
-                                            [
-                                                InlineKeyboardButton(text="1280 columns (slowly)",
-                                                                     callback_data=presets_callback.new(
-                                                                         size="1280_columns"))
                                             ]
 
                                         ]

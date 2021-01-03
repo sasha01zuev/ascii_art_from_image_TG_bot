@@ -8,4 +8,4 @@ from utils.misc import rate_limit
 @rate_limit(limit=5)  # Anti-spam
 @dp.message_handler(Command("start"))
 async def start(message: Message):
-    await message.answer("Send me image and I send you ASCII art from it")
+    await message.answer("Just send me image 🖼")

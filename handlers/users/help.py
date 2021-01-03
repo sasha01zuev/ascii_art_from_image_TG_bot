@@ -9,7 +9,7 @@ from utils.misc import rate_limit
 @dp.message_handler(Command("help"))
 async def start(message: Message):
     await message.answer("Send me picture and choose type of output art image\n"
-                         "    ✅ ASCII Soon! (Does not work now)\n"
+                         "    ✅ If you chosen ASCII, there are only default customization\n"
                          "    ✅ If you chosen HTML, there are 3 kinds of customization. You can try every\n"
                          "    ✅ As a result, you will receive a picture, a picture file and a document file with art\n"
                          "    ✅ If output image more than 10 MB then only the files will be sent\n"

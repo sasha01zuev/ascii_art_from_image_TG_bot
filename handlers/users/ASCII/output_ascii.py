@@ -1,12 +1,12 @@
 import os
 import shutil
 
+import ascii_magic
+import imgkit
 from aiogram.types import CallbackQuery, InputFile
 
 from keyboards.inline.callback_data import output_callback
 from loader import dp
-import ascii_magic
-import imgkit
 
 
 # If ASCII type was chosen
